@@ -12,7 +12,7 @@ function showAlert(message, className) {
 
   setTimeout(() => {
     document.querySelector('.alert').remove();
-  }, 2000);
+  }, 3000);
 }
 
 // Clear Fields
