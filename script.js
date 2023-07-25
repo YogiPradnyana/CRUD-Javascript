@@ -23,7 +23,7 @@ function clearFields() {
 }
 
 // Add Data
-document.querySelector('#mahasiswa-form').addEventListener('submit', () => {
+document.querySelector('.add-btn').addEventListener('click', () => {
   // Get Fields
   const nama = document.querySelector('#nama').value;
   const nim = document.querySelector('#nim').value;
@@ -46,7 +46,7 @@ document.querySelector('#mahasiswa-form').addEventListener('submit', () => {
             </td>
             `;
       list.appendChild(tr);
-      console.log(list);
+
       showAlert('Mahasiswa has been added', 'success');
       selectedRow = null;
     } else {
@@ -57,6 +57,7 @@ document.querySelector('#mahasiswa-form').addEventListener('submit', () => {
       selectedRow = null;
     }
   }
+
   clearFields();
 });
 
