@@ -22,6 +22,19 @@ function clearFields() {
   document.querySelector('#jurusan').value = '';
 }
 
+// renderNomer
+function renderNumber() {
+  const numberElements = document.querySelectorAll('.number');
+  let length = numberElements.length;
+
+  let iteration = 0;
+  for (let i = 0; i < length; i++) {
+    iteration = i + 1;
+    numberElements[i].innerHTML = iteration;
+    console.log(iteration);
+  }
+}
+
 // Add Data
 document.querySelector('.add-btn').addEventListener('click', () => {
   // Get Fields
@@ -37,6 +50,7 @@ document.querySelector('.add-btn').addEventListener('click', () => {
       const list = document.querySelector('#mahasiswa-list');
       const tr = document.createElement('tr');
       tr.innerHTML = `
+            <td class="number"></td>
             <td>${nama}</td>
             <td>${nim}</td>
             <td>${jurusan}</td>
@@ -46,13 +60,14 @@ document.querySelector('.add-btn').addEventListener('click', () => {
             </td>
             `;
       list.appendChild(tr);
+      renderNumber();
 
       showAlert('Mahasiswa has been added', 'success');
       selectedRow = null;
     } else {
-      selectedRow.children[0].textContent = nama;
-      selectedRow.children[1].textContent = nim;
-      selectedRow.children[2].textContent = jurusan;
+      selectedRow.children[1].textContent = nama;
+      selectedRow.children[2].textContent = nim;
+      selectedRow.children[3].textContent = jurusan;
       showAlert('Mahasiswa has been edited', 'info');
       selectedRow = null;
     }
@@ -66,9 +81,9 @@ document.querySelector('#mahasiswa-list').addEventListener('click', (e) => {
   let target = e.target;
   selectedRow = target.parentElement.parentElement;
   if (target.classList.contains('edit')) {
-    document.querySelector('#nama').value = selectedRow.children[0].textContent;
-    document.querySelector('#nim').value = selectedRow.children[1].textContent;
-    document.querySelector('#jurusan').value = selectedRow.children[2].textContent;
+    document.querySelector('#nama').value = selectedRow.children[1].textContent;
+    document.querySelector('#nim').value = selectedRow.children[2].textContent;
+    document.querySelector('#jurusan').value = selectedRow.children[3].textContent;
   }
 });
 
@@ -81,6 +96,7 @@ document.querySelector('#mahasiswa-list').addEventListener('click', (e) => {
       showAlert('Mahasiswa has been deleted', 'danger');
       selectedRow = null;
       clearFields();
+      renderNumber();
     } else {
       selectedRow = null;
     }
